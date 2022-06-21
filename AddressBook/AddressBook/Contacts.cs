@@ -6,49 +6,37 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    public class Contacts
+    public class Contact
     {
-        string FirstName { get; set; }
-        string LastName { get; set; }
-        string phonenumber { get; set; }
-        string city { get; set; }
-        string state { get; set; }
-        string Zip { get; set; }
-        string address { get; set; }
+        private String firstName;
+        private String lastName;
+        private String address;
+        private String city;
+        private String state;
+        private String zip;
+        private String phoneNumber;
+        private String email;
 
-        public List<Contacts> People = new List<Contacts>();
-        public void addperson()
+        public Contact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
-
-            Contacts person = new Contacts();
-
-
-            Console.WriteLine("Add a entry to your Address book");
-
-
-            Console.Write("Enter First Name: ");
-            person.FirstName = Console.ReadLine();
-
-            Console.Write("Enter Last Name: ");
-            person.LastName = Console.ReadLine();
-
-            Console.Write("Enter Phone Number: ");
-            person.phonenumber = Console.ReadLine();
-
-            Console.Write("Enter Address 1: ");
-
-            person.address = Console.ReadLine();
-            Console.Write("Enter Zip: ");
-            person.Zip = Console.ReadLine();
-
-            Console.Write("Enter city: ");
-            person.city = Console.ReadLine();
-
-            Console.Write("Enter state: ");
-            person.state = Console.ReadLine();
-
-
-            People.Add(person);
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Address = address;
+            this.City = city;
+            this.State = state;
+            this.Zip = zip;
+            this.PhoneNumber = phoneNumber;
+            this.Email = email;
         }
+
+        public string FirstName { get => firstName; set => firstName = value; }
+        public string LastName { get => lastName; set => lastName = value; }
+        public string Address { get => address; set => address = value; }
+        public string City { get => city; set => city = value; }
+        public string State { get => state; set => state = value; }
+        public string Zip { get => zip; set => zip = value; }
+        public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
+        public string Email { get => email; set => email = value; }
     }
 }
+
