@@ -9,31 +9,54 @@ namespace AddressBook
             Console.WriteLine("Welcome to Address Book Program");
 
             Console.WriteLine("-----------------------");
-            Console.WriteLine("--Add Contact Details--");
+            ContactOperation contactOperation = new ContactOperation();
+            while (true)
+            {
+                Console.WriteLine("-----------------------");
+                Console.WriteLine("Select Choice:");
+                Console.WriteLine("1.Add Contact");
+                Console.WriteLine("2.Show Contacts");
+                Console.WriteLine("3.Edit Contact");
+                Console.WriteLine("4.Delete Contact");
+                Console.WriteLine("5.Exit");
+                Console.WriteLine("-----------------------");
+                int choice = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("First Name:");
-            string firstName = Console.ReadLine();
-            Console.WriteLine("Last Name:");
-            string lastName = Console.ReadLine();
-            Console.WriteLine("Address:");
-            string address = Console.ReadLine();
-            Console.WriteLine("City:");
-            string city = Console.ReadLine();
-            Console.WriteLine("State:");
-            string state = Console.ReadLine();
-            Console.WriteLine("Zip Code:");
-            string zip = Console.ReadLine();
-            Console.WriteLine("Phone Number:");
-            string phoneNumber = Console.ReadLine();
-            Console.WriteLine("Email Address:");
-            string email = Console.ReadLine();
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("--Add Contact Details--");
+                        Console.WriteLine("First Name:");
+                        string firstName = Console.ReadLine();
+                        Console.WriteLine("Last Name:");
+                        string lastName = Console.ReadLine();
+                        Console.WriteLine("Address:");
+                        string address = Console.ReadLine();
+                        Console.WriteLine("City:");
+                        string city = Console.ReadLine();
+                        Console.WriteLine("State:");
+                        string state = Console.ReadLine();
+                        Console.WriteLine("Zip Code:");
+                        string zip = Console.ReadLine();
+                        Console.WriteLine("Phone Number:");
+                        string phoneNumber = Console.ReadLine();
+                        Console.WriteLine("Email Address:");
+                        string email = Console.ReadLine();
+                        contactOperation.addContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+                        break;
 
+                    case 2:
+                        contactOperation.showList();
+                        break;
 
-            //ContactOperation contactOperation = new ContactOperation();
-            //contactOperation.addContact("Vaibhav", "Manapure", "At.Po.Ta Samudrapur,Wardha", "Nagpur", "Maharashtra", "442305", "9764510067", "manapure.vaibhav542@gmail.com");
-            //contactOperation.showList();
+                    case 3:
+                        Console.WriteLine("Enter First Name of the Contact You Want to Edit.:");
+                        string fName = Console.ReadLine();
+                        contactOperation.editContact(fName);
+                        break;
 
-            Console.ReadKey();
+                }
+            }
         }
     }
 }
