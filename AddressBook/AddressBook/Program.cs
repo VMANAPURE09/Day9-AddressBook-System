@@ -1,62 +1,52 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    internal class Program
+     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Address Book Program");
+            //Console.WriteLine("!------Welcome to Address Book system------!");
+            //creating object of addressbook
+            ContactOperation addressBook = new ContactOperation();
+            //getting Op in Constructor with paratmers
+            takeInputAndAddToContacts(addressBook);
+            takeInputAndAddToContacts(addressBook);
+            // called Print method 
+            addressBook.print();
+            Console.WriteLine("Enter FirstName of Contact to be edited");
+            string firstNameOfContactToBeEdited = Console.ReadLine();
+            Console.WriteLine("Enter LastName of Contact to be edited");
+            string lastNameOfContactToBeEdited = Console.ReadLine();
+            addressBook.edit(firstNameOfContactToBeEdited, lastNameOfContactToBeEdited);
+            Console.ReadLine();
+        }
+        // take Input And Add To Contacts
+        public static void takeInputAndAddToContacts(ContactOperation addressBook)
+        {
+            Console.WriteLine("Enter FirstName");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Enter LastName");
+            string lastName = Console.ReadLine();
+            Console.WriteLine("Enter Address");
+            string address = Console.ReadLine();
+            Console.WriteLine("Enter City");
+            string city = Console.ReadLine();
+            Console.WriteLine("Enter State");
+            string state = Console.ReadLine();
+            Console.WriteLine("Enter Zip");
+            int zip = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter PhoneNumber");
+            long phoneNumber = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Email id");
+            string email = Console.ReadLine();
 
-            Console.WriteLine("-----------------------");
-            ContactOperation contactOperation = new ContactOperation();
-            while (true)
-            {
-                Console.WriteLine("-----------------------");
-                Console.WriteLine("Select Choice:");
-                Console.WriteLine("1.Add Contact");
-                Console.WriteLine("2.Show Contacts");
-                Console.WriteLine("3.Edit Contact");
-                Console.WriteLine("4.Delete Contact");
-                Console.WriteLine("5.Exit");
-                Console.WriteLine("-----------------------");
-                int choice = Convert.ToInt32(Console.ReadLine());
-
-                switch (choice)
-                {
-                    case 1:
-                        Console.WriteLine("--Add Contact Details--");
-                        Console.WriteLine("First Name:");
-                        string firstName = Console.ReadLine();
-                        Console.WriteLine("Last Name:");
-                        string lastName = Console.ReadLine();
-                        Console.WriteLine("Address:");
-                        string address = Console.ReadLine();
-                        Console.WriteLine("City:");
-                        string city = Console.ReadLine();
-                        Console.WriteLine("State:");
-                        string state = Console.ReadLine();
-                        Console.WriteLine("Zip Code:");
-                        string zip = Console.ReadLine();
-                        Console.WriteLine("Phone Number:");
-                        string phoneNumber = Console.ReadLine();
-                        Console.WriteLine("Email Address:");
-                        string email = Console.ReadLine();
-                        contactOperation.addContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-                        break;
-
-                    case 2:
-                        contactOperation.showList();
-                        break;
-
-                    case 3:
-                        Console.WriteLine("Enter First Name of the Contact You Want to Edit.:");
-                        string fName = Console.ReadLine();
-                        contactOperation.editContact(fName);
-                        break;
-
-                }
-            }
+            addressBook.addContacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
+            Console.ReadLine();
         }
     }
 }

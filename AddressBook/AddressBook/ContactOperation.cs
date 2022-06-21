@@ -6,94 +6,158 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    public class ContactOperation
+     class ContactOperation
     {
-        private List<Contact> ContactList;
+        private List<Contact> contactList;
         public ContactOperation()
         {
-            this.ContactList = new List<Contact>();
+            contactList = new List<Contact>();
         }
-
-        public void addContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
+        public void addContacts(string fistName, string lastName, string address, string city, string state, int zip, long phoneNumber, string email)
         {
-            Contact newContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-            this.ContactList.Add(newContact);
+            //Create object of Contact class
+            Contact contact = new Contact();
+            //calling Varivale using object
+            contact.fistName = fistName;
+            contact.lastName = lastName;
+            contact.address = address;
+            contact.city = city;
+            contact.state = state;
+            contact.zip = zip;
+            contact.phoneNumber = phoneNumber;
+            contact.email = email;
+            //adding contact details in contact list 
+            contactList.Add(contact);
         }
-        public void showList()
+        //method print
+        public void print()
         {
-            foreach (var contact in ContactList)
+            //using foreach loop for calling the variable 
+            foreach (Contact contact in contactList)
             {
-                Console.WriteLine("FirstName: " + contact.FirstName);
-                Console.WriteLine("LastName: " + contact.LastName);
-                Console.WriteLine("Address: " + contact.Address);
-                Console.WriteLine("City: " + contact.City);
-                Console.WriteLine("State: " + contact.State);
-                Console.WriteLine("ZipCode: " + contact.Zip);
-                Console.WriteLine("Phone Number: " + contact.PhoneNumber);
-                Console.WriteLine("Email: " + contact.Email);
-                Console.WriteLine("-----------------");
-
+                //Prinitng the Op
+                Console.WriteLine("FirstName: " + contact.fistName);
+                Console.WriteLine("LastName: " + contact.lastName);
+                Console.WriteLine("Address: " + contact.address);
+                Console.WriteLine("City: " + contact.city);
+                Console.WriteLine("State: " + contact.state);
+                Console.WriteLine("Zip: " + contact.zip);
+                Console.WriteLine("PhoneNumber: " + contact.phoneNumber);
+                Console.WriteLine("Email id: " + contact.email);
             }
         }
-        public void editContact(string fName)
+        public void edit(string firstName, string lastName)
         {
-            foreach (var contact in ContactList)
-            {
-                if (contact.FirstName == fName)
-                {
-                    Console.WriteLine("Edit? Old FirstName: " + contact.FirstName);
-                    string newFirstName = Console.ReadLine();
-                    Console.WriteLine("Edit? Old LastName: " + contact.LastName);
-                    string newLastName = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Address: " + contact.Address);
-                    string newAddress = Console.ReadLine();
-                    Console.WriteLine("Edit? Old City: " + contact.City);
-                    string newCity = Console.ReadLine();
-                    Console.WriteLine("Edit? Old State: " + contact.State);
-                    string newState = Console.ReadLine();
-                    Console.WriteLine("Edit? Old ZipCode: " + contact.Zip);
-                    string newZip = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Phone Number: " + contact.PhoneNumber);
-                    string newPhoneNumber = Console.ReadLine();
-                    Console.WriteLine("Edit? Old Email: " + contact.Email);
-                    string newEmail = Console.ReadLine();
-                    Console.WriteLine("-----------------");
+            // created object ContacttobeEdited fir conatct and at starting it will be null
+            Contact contactToBeEdited = null;
 
-                    if (newFirstName != "")
-                    {
-                        contact.FirstName = newFirstName;
-                    }
-                    if (newLastName != "")
-                    {
-                        contact.LastName = newLastName;
-                    }
-                    if (newAddress != "")
-                    {
-                        contact.Address = newAddress;
-                    }
-                    if (newCity != "")
-                    {
-                        contact.City = newCity;
-                    }
-                    if (newState != "")
-                    {
-                        contact.State = newState;
-                    }
-                    if (newZip != "")
-                    {
-                        contact.Zip = newZip;
-                    }
-                    if (newPhoneNumber != "")
-                    {
-                        contact.PhoneNumber = newPhoneNumber;
-                    }
-                    if (newEmail != "")
-                    {
-                        contact.Email = newEmail;
-                    }
+            // foreach loop begin
+            // it will run till the
+            // last element of the array
+            foreach (Contact contact in this.contactList)
+            {
+                if (contact.fistName == firstName && contact.lastName == lastName)
+                    contactToBeEdited = contact;
+            }
+            // if First Name And last name is not match with entered data
+            //contactToBeEdited == null
+            if (contactToBeEdited == null)
+            {
+                //Error :No such contact exists
+                Console.WriteLine("No such contact exists");
+                return;
+            }
+            //otherwise get the value
+            this.editThisContact(contactToBeEdited);
+        }   
+        public void editThisContact(Contact contactToBeEdited)
+        {
+            //if true
+            while (true)
+            {
+                //Enter what you want to edit
+                Console.WriteLine("Enter 1 to edit FirstName");
+                Console.WriteLine("Enter 2 to edit LastName");
+                Console.WriteLine("Enter 3 to edit Address");
+                Console.WriteLine("Enter 4 to edit City");
+                Console.WriteLine("Enter 5 to edit State");
+                Console.WriteLine("Enter 6 to edit Zip");
+                Console.WriteLine("Enter 7 to edit PhoneNumber");
+                Console.WriteLine("Enter 8 to edit Email Id");
+                Console.WriteLine("Enter 9 if Editing is done");
+                //read value
+                int choice = Convert.ToInt32(Console.ReadLine());
+                //switchCase
+                switch (choice)
+                {
+                    //for Edit FirstName
+                    case 1:
+                        Console.WriteLine("Enter new FirstName");
+                        string fName = Console.ReadLine();
+                        contactToBeEdited.fistName = fName;
+                        break;
+                    //For edit Lastlame
+                    case 2:
+                        Console.WriteLine("Enter new LastName");
+                        string lName = Console.ReadLine();
+                        contactToBeEdited.lastName = lName;
+                        break;
+                    //For Edit Address
+                    case 3:
+                        Console.WriteLine("Enter new Address");
+                        string address = Console.ReadLine();
+                        contactToBeEdited.address = address;
+                        break;
+                    //For Edit City
+                    case 4:
+                        Console.WriteLine("Enter new City");
+                        string city = Console.ReadLine();
+                        contactToBeEdited.city = city;
+                        break;
+                    //For Edit State
+                    case 5:
+                        Console.WriteLine("Enter new State");
+                        string state = Console.ReadLine();
+                        contactToBeEdited.state = state;
+                        break;
+                    //For Edit Zip
+                    case 6:
+                        Console.WriteLine("Enter new Zip");
+                        int zip = Convert.ToInt32(Console.ReadLine());
+                        contactToBeEdited.zip = zip;
+                        break;
+                    //For Edit Phone NUmber
+                    case 7:
+                        Console.WriteLine("Enter new PhoneNumber");
+                        long phoneNumber = long.Parse(Console.ReadLine());
+                        contactToBeEdited.phoneNumber = phoneNumber;
+                        break;
+                    //For Edit Email ID
+                    case 8:
+                        Console.WriteLine("Enter new Email Id");
+                        string email = Console.ReadLine();
+                        contactToBeEdited.email = email;
+                        break;
+                    //if Done
+                    case 9:
+                        Console.WriteLine("Editing done.New Contact :-");
+                        this.printSpecificContact(contactToBeEdited);
+                        return;
                 }
             }
-
         }
-    }
+        //Print Data After Edit
+        public void printSpecificContact(Contact contact)
+        {
+            Console.WriteLine("FirstName: " + contact.fistName);
+            Console.WriteLine("LastName: " + contact.lastName);
+            Console.WriteLine("Address: " + contact.address);
+            Console.WriteLine("City: " + contact.city);
+            Console.WriteLine("State: " + contact.state);
+            Console.WriteLine("Zip: " + contact.zip);
+            Console.WriteLine("PhoneNumber: " + contact.phoneNumber);
+            Console.WriteLine("Email id: " + contact.email);
+        }
+     }
 }
+
