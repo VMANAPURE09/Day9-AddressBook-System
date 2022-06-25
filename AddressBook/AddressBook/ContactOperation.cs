@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-     class ContactOperation
+    class ContactOperation
     {
         private List<Contact> contactList;
         public ContactOperation()
@@ -69,11 +69,12 @@ namespace AddressBook
             }
             //otherwise get the value
             this.editThisContact(contactToBeEdited);
-        }   
+        }
         public void editThisContact(Contact contactToBeEdited)
         {
+            bool status = true;
             //if true
-            while (true)
+            while (status == true)
             {
                 //Enter what you want to edit
                 Console.WriteLine("Enter 1 to edit FirstName");
@@ -128,7 +129,7 @@ namespace AddressBook
                         int zip = Convert.ToInt32(Console.ReadLine());
                         contactToBeEdited.zip = zip;
                         break;
-                    //For Edit Phone NUmber
+                    ////For Edit Phone NUmber
                     case 7:
                         Console.WriteLine("Enter new PhoneNumber");
                         long phoneNumber = long.Parse(Console.ReadLine());
@@ -144,10 +145,14 @@ namespace AddressBook
                     case 9:
                         Console.WriteLine("Editing done.New Contact :-");
                         this.printSpecificContact(contactToBeEdited);
-                        return;
+                        break;
 
+                    //default
+                    default:
+                        status = false;
+                        break;
                 }
-            }
+            }//while end
         }
         //Print Data After Edit
         public void printSpecificContact(Contact contact)
