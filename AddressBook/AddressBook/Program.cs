@@ -10,71 +10,75 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("!------Welcome to Address Book system------!");
-            //creating object of addressbook
-            ContactOperation addressBook = new ContactOperation();
-            //getting Op in Constructor with paratmers
-            // takeInputAndAddToContacts(addressBook);
-            //takeInputAndAddToContacts(addressBook);
-            //to add multiple contact 
-            Console.WriteLine("Enter how many contacts you want to add");
-            int number = Convert.ToInt32(Console.ReadLine());
-            //in for loop int number_i = 1  number_i <= number +1
-            for (int number_i = 1; number_i <= number; number_i++)
+            Console.WriteLine("Welcome to Address Book Program");
+            ContactOperation newContactOperation = new ContactOperation();
+            Contact newcontact = new Contact();
+            bool flag = true;
+            while (flag)
             {
-                takeInputAndAddToContacts(addressBook);
+                Console.WriteLine("Enter Number to Execute the Address book Program \n1. Create contacts \n2. Add contact \n3. Edit contact \n4. Delete contact \n5. Add contact \n6. Add multiple Address Book with unique name \n7. Exit");
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:
+                        Console.WriteLine("Enter the Contact Information first name, last names, address,city, state, zip, phone number and email id");
+                        newcontact.firstname = Console.ReadLine();
+                        newcontact.lastname = Console.ReadLine();
+                        newcontact.address = Console.ReadLine();
+                        newcontact.city = Console.ReadLine();
+                        newcontact.state = Console.ReadLine();
+                        newcontact.zip = Console.ReadLine();
+                        newcontact.phonenumber = Console.ReadLine();
+                        newcontact.emailid = Console.ReadLine();
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter the Contact Information first name, last names, address,city, state, zip, phone number and email id");
+                        newcontact.firstname = Console.ReadLine();
+                        newcontact.lastname = Console.ReadLine();
+                        newcontact.address = Console.ReadLine();
+                        newcontact.city = Console.ReadLine();
+                        newcontact.state = Console.ReadLine();
+                        newcontact.zip = Console.ReadLine();
+                        newcontact.phonenumber = Console.ReadLine();
+                        newcontact.emailid = Console.ReadLine();
+                        newContactOperation.AddContact(newcontact);
+                        newContactOperation.Display();
+                        break;
+                    case 3:
+                        newContactOperation.Editexistingcontact();
+                        newContactOperation.Display();
+                        break;
+                    case 4:
+                        newContactOperation.Deletecontact();
+                        newContactOperation.Display();
+                        break;
+                    case 5:
+                        Console.WriteLine("Enter the Contact Information first name, last names, address,city, state, zip, phone number and email id");
+                        newcontact.firstname = Console.ReadLine();
+                        newcontact.lastname = Console.ReadLine();
+                        newcontact.address = Console.ReadLine();
+                        newcontact.city = Console.ReadLine();
+                        newcontact.state = Console.ReadLine();
+                        newcontact.zip = Console.ReadLine();
+                        newcontact.phonenumber = Console.ReadLine();
+                        newcontact.emailid = Console.ReadLine();
+                        newContactOperation.AddContact(newcontact);
+                        newContactOperation.Display();
+                        break;
+                    case 6:
+                        Console.WriteLine("Enter the Unique Contact to be added: ");
+                        string name = Console.ReadLine();
+                        newContactOperation.AddUniqueContact(name);
+                        newContactOperation.DisplayUniqueContacts();
+                        break;
+                    case 7:
+                        flag = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Choice");
+                        break;
+                }
             }
-            // called Print method 
-            addressBook.print();
-
-
-            Console.WriteLine("What you want to perform ? Press 1 for Edit the details ,\n Press 2 for Delete  details : ");
-            int Selectchoice = Convert.ToInt32(Console.ReadLine());
-            switch (Selectchoice)
-            {
-
-                case 1:
-                    Console.WriteLine("Enter FirstName of Contact to be edited");
-                    string firstNameOfContactToBeEdited = Console.ReadLine();
-                    Console.WriteLine("Enter LastName of Contact to be edited");
-                    string lastNameOfContactToBeEdited = Console.ReadLine();
-                    addressBook.edit(firstNameOfContactToBeEdited, lastNameOfContactToBeEdited);
-
-                    break;
-                case 2:
-                    Console.WriteLine("Enter FirstName of Contact to be deleted");
-                    string firstNameOfContactToBeDeleted = Console.ReadLine();
-                    Console.WriteLine("Enter LastName of Contact to be deleted");
-                    string lastNameOfContactToBeDeleted = Console.ReadLine();
-                    addressBook.delete(firstNameOfContactToBeDeleted, lastNameOfContactToBeDeleted);
-                    break;
-                default:
-                    Console.WriteLine("Please enter the valid number : ");
-                    break;
-            }
-            Console.ReadLine();
-        }
-        // take Input And Add To Contacts
-        public static void takeInputAndAddToContacts(AddressBook addressBook)
-        {
-            Console.WriteLine("Enter FirstName");
-            string firstName = Console.ReadLine();
-            Console.WriteLine("Enter LastName");
-            string lastName = Console.ReadLine();
-            Console.WriteLine("Enter Address");
-            string address = Console.ReadLine();
-            Console.WriteLine("Enter City");
-            string city = Console.ReadLine();
-            Console.WriteLine("Enter State");
-            string state = Console.ReadLine();
-            Console.WriteLine("Enter Zip");
-            int zip = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter PhoneNumber");
-            long phoneNumber = long.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Email id");
-            string email = Console.ReadLine();
-            addressBook.addContacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
-            Console.ReadLine();
         }
     }
 }
