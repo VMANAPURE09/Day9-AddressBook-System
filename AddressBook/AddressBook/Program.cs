@@ -65,11 +65,13 @@ namespace AddressBook
                         newContactOperation.AddContact(newcontact);
                         newContactOperation.Display();
                         break;
+                   
                     case 6:
-                        Console.WriteLine("Enter the Unique Contact to be added: ");
+                        Console.WriteLine("Enter the Unique Contact to be added");
                         string name = Console.ReadLine();
-                        newContactOperation.AddUniqueContact(name);
-                        newContactOperation.DisplayUniqueContacts();
+                        ContactOperation book = new ContactOperation();
+                        book.AddUniqueContact(name);
+                        book.DisplayUniqueContacts();
                         break;
                     case 7:
                         flag = false;
