@@ -74,11 +74,24 @@ namespace AddressBook
                         book.DisplayUniqueContacts();
                         break;
                     case 7:
+                        Console.WriteLine("Enter the Unique Contact to be added: ");
+                        string duplicatename = Console.ReadLine();
+                        newContactOperation.AddUniqueContact(duplicatename);
+                        newContactOperation.DisplayUniqueContacts();
+                        break;
+                    case 8:
+                        newContactOperation.Search_person_city_state();
+
+                        break;
+                    case 9:
                         flag = false;
                         break;
                     default:
                         Console.WriteLine("Invalid Choice");
                         break;
+                        
+                       
+                    
                 }
             }
         }
