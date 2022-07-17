@@ -11,9 +11,13 @@ namespace AddressBook
 {
     public class ContactOperation
     {
+        // Creating list for Storing the Contacts of Each Persons details
         List<Contact> AddressList = new List<Contact>();
+
+
         Dictionary<string, List<Contact>> MultipleAddressbook = new Dictionary<string, List<Contact>>();
 
+        //Creating the method for creating the contact
         public void AddContact(Contact newcontact)
         {
             AddressList.Add(newcontact);
@@ -293,18 +297,20 @@ namespace AddressBook
         public void ReadWriteasCsv()
         {
 
-            string importFilePath = @"C:\User\@nkush\Addres_BookSystem\AddressBookSystem\AddressBookSystem\AddressBookSystem\Text\import.csv";
-            string exportFilePath = @"C:\User\@nkush\Addres_BookSystem\AddressBookSystem\AddressBookSystem\AddressBookSystem\Text\export.csv";
+            string importFilePath = @"E:\BridgeLabz2\PraticeProblem\Day9-AddressBook-System\AddressBook\AddressBook\Import.csv";
+            string exportFilePath = @"E:\BridgeLabz2\PraticeProblem\Day9-AddressBook-System\AddressBook\AddressBook\Export.csv";
 
             using (var reader = new StreamReader(importFilePath))
             using (var csv = new CsvReader(reader, CultureInfo.CurrentCulture))
             {
+                //Reading the user data from CSV file
                 var records = csv.GetRecords<Contact>().ToList();
-                foreach (var Contact in records)
+                foreach (var Contact in AddressList)
                 {
                     Console.WriteLine("\nfirstname: " + Contact.firstname + "\nlastname: " + Contact.lastname + "\naddress: " + Contact.address + "\ncity: " + Contact.city + "\nstate: " + Contact.state + "\nzip: " + Contact.zip + "\nphoneno: " + Contact.phonenumber + "\nemail: " + Contact.emailid);
                 }
 
+                //Writing the User data in to CSV file
                 using (var writer = new StreamWriter(exportFilePath))
                 using (var csvExport = new CsvWriter(writer, CultureInfo.CurrentCulture))
                 {
