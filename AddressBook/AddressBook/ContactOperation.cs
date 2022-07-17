@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -261,6 +262,33 @@ namespace AddressBook
             }
 
         }
+        public void Readfile()
+        {
+            Console.WriteLine("The Contact List Using Stream Reader");
+            string filepath = @"E:\BridgeLabz2\PraticeProblem\Day9-AddressBook-System\AddressBook\AddressBook\ContactOperation.cs";
+
+            using (StreamReader reader = File.OpenText(filepath))
+            {
+                string line = " ";
+                while ((line = reader.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
+            }
+        }
+        public void WriteUsingStreamWriter()
+        {
+            Console.WriteLine("The Contact List Using Stream Writer");
+            String path = @"E:\BridgeLabz2\PraticeProblem\Day9-AddressBook-System\AddressBook\AddressBook\ContactOperation.cs";
+            using (StreamWriter sr = File.AppendText(path))
+            {
+                foreach (var contact in AddressList)
+                {
+                    sr.WriteLine("\nfirstname: " + contact.firstname + "\nlastname: " + contact.lastname + "\naddress: " + contact.address + "\ncity: " + contact.city + "\nstate: " + contact.state + "\nzip: " + contact.zip + "\nphoneno: " + contact.phonenumber + "\nemail: " + contact.emailid);
+                }
+            }
+        }
+
     }
 }
 
