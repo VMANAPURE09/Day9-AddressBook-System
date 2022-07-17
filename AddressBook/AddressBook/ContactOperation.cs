@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -318,6 +319,31 @@ namespace AddressBook
                 }
             }
         }
+        //Write the Persons details in AddtressBook to CSV file And read from the person details from JSON File.
+        public void ReadWriteinJson()
+        {
+            string importFilePath = @"E:\BridgeLabz2\PraticeProblem\Day9-AddressBook-System\AddressBook\AddressBook\AddressBookImport.Json";
+            string exportFilePath = @"E:\BridgeLabz2\PraticeProblem\Day9-AddressBook-System\AddressBook\AddressBook\AddressBookExport.Json";
+            using (StreamReader reader = new StreamReader(importFilePath))
+            {
+                //Reading the user data from JSON file
+                var json = reader.ReadToEnd();
+                var data = JsonConvert.DeserializeObject<List<Contact>>(json);
+                foreach (var contact in data)
+                {
+                    Console.WriteLine("\nfirstname: " + contact.firstname + "\nlastname: " + contact.lastname + "\naddress: " + contact.address + "\ncity: " + contact.city + "\nstate: " + contact.state + "\nzip: " + contact.zip + "\nphoneno: " + contact.phonenumber + "\nemail: " + contact.emailid);
+                }
+
+                //Writing the User data in to JSON file
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamWriter sw = new StreamWriter(exportFilePath))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, data);
+                }
+            }
+        }
+
 
     }
 }
