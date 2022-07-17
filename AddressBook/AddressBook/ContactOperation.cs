@@ -231,6 +231,36 @@ namespace AddressBook
             }
 
         }
+        public void SortByCity_State_Zip()
+        {
+            Console.WriteLine("Write Function to Sort Person by");
+            Console.WriteLine("\n1.City \n2.State \n3.Zip");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
+            {
+                case 1:
+                   
+                    foreach (KeyValuePair<string, List<Contact>> sortbycity in MultipleAddressbook.OrderBy(key => key.Key))
+                    {
+                        Console.WriteLine("Name of person: {0}", sortbycity.Key);
+                    }
+                    break;
+                case 2:
+                    foreach (KeyValuePair<string, List<Contact>> sortbystate in MultipleAddressbook.OrderBy(key => key.Key))
+                    {
+                        Console.WriteLine("Name of person: {0}", sortbystate.Key);
+                    }
+                    break;
+                case 3:
+                    foreach (KeyValuePair<string, List<Contact>> sortbyzip in MultipleAddressbook.OrderBy(key => key.Key))
+                    {
+                        Console.WriteLine("Name of person: {0}", sortbyzip.Key);
+                    }
+
+                    break;
+            }
+
+        }
     }
 }
 
